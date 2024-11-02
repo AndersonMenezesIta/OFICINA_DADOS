@@ -1,0 +1,54 @@
+erDiagram
+    CLIENTE ||--o{ VEICULO : possui
+    CLIENTE {
+        int id_cliente PK
+        string nome
+        string endereco
+        string telefone
+    }
+    
+    VEICULO ||--o{ ORDEM_SERVICO : gera
+    VEICULO {
+        string placa PK
+        string modelo
+        string marca
+        int ano
+    }
+    
+    ORDEM_SERVICO ||--o{ SERVICO : contem
+    ORDEM_SERVICO ||--o{ PECA : utiliza
+    ORDEM_SERVICO {
+        int numero PK
+        date data_emissao
+        decimal valor_total
+        string status
+        date data_conclusao
+    }
+    
+    EQUIPE ||--o{ MECANICO : composta_por
+    EQUIPE ||--o{ ORDEM_SERVICO : executa
+    EQUIPE {
+        int id_equipe PK
+        string nome
+    }
+    
+    MECANICO {
+        int codigo PK
+        string nome
+        string endereco
+        string especialidade
+    }
+    
+    SERVICO {
+        int id_servico PK
+        string descricao
+        decimal valor_mao_obra
+        decimal valor_total
+    }
+    
+    PECA {
+        int id_peca PK
+        string descricao
+        decimal valor_unitario
+        int quantidade
+    }
